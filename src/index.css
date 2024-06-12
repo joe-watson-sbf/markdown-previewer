@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
