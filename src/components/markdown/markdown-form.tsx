@@ -7,7 +7,7 @@ export const MarkdownForm = () => {
 
   return (
     <div className='space-y-2'>
-      <h1 className='text-sm text-gray-600 flex items-center gap-2'> <FilePen/>Content</h1>
+      <h1 className='text-sm text-gray-600 flex items-center gap-2'> <FilePen/> Markdown Content</h1>
       <textarea onChange={(e) => handleOnChangeContent(e.target.value)}
         placeholder='Write or paste your markdown here...'
         value={content}

@@ -35,8 +35,8 @@ export const MarkDownProvider = ({ children }: MarkDownProviderProps) => {
    * @param content - the content to be sanitized
    * @returns void
    */
-  const handleOnChangeContent = (content: string) => {
-    const cleanHtml = DOMPurify.sanitize(content, { USE_PROFILES: { html: true } });
+  const handleOnChangeContent = (newContent: string) => {
+    const cleanHtml = DOMPurify.sanitize(newContent, { USE_PROFILES: { html: true } });
     setContent(cleanHtml);
   }
 
@@ -53,13 +53,19 @@ export const MarkDownProvider = ({ children }: MarkDownProviderProps) => {
     setTheme(theme);
   }
 
+  const value = React.useMemo(() => ({
+    content,
+    handleOnChangeContent,
+    editorFontSize,
+    setEditorFontSize,
+    themeList: Object.keys(themes),
+    theme,
+    defaultTheme,
+    handleChangeTheme
+  }), [content,editorFontSize, theme, defaultTheme]);
 
   return (
-    <MarkDownContext.Provider value={{ content, 
-      handleOnChangeContent, editorFontSize,
-       setEditorFontSize, themeList: Object.keys(themes),
-        theme, handleChangeTheme, defaultTheme
-       }}>
+    <MarkDownContext.Provider value={value}>
       {children}
     </MarkDownContext.Provider>
   );
